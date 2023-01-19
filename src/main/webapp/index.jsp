@@ -5,11 +5,192 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Students Reporting System</title>
-    
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+      .contentWrapper {
+        width: 100%;
+        position: relative;
+        padding: 2em;
+        border-radius: 30px;
+        background-color: hsl(0, 0%, 100%);
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
+      }
+      body {
+        min-height: 100vh;
+        display: grid;
+        place-content: center;
+        text-rendering: optimizeSpeed;
+        padding: 2em;
+        background: linear-gradient(
+          90deg,
+          hsla(328, 75%, 45%, 1) 0%,
+          hsla(269, 85%, 41%, 1) 100%
+        );
+
+        line-height: 1.4;
+        font-family: "Work Sans", sans-serif;
+      }
+      .content {
+        overflow: hidden;
+        z-index: 1000;
+        animation: fadeIn 1s ease-in-out;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+      .formGroup label {
+        display: inline-block;
+        margin: 0.5em 0;
+        font-size: 1.3em;
+        font-weight: 400;
+        color: #1f1414;
+      }
+
+      .formGroup input[type="submit"] {
+        height: 40px;
+        padding: 0 0.5em;
+        font-weight: 1.5rem;
+        font-weight: 400;
+        color: hsl(0, 0%, 10%);
+        outline: 0;
+        border: 1px solid #e5e1e1;
+      }
+      .formGroup input[type="number"] {
+        height: 40px;
+        padding: 0 0.5em;
+        font-weight: 1.5rem;
+        font-weight: 400;
+        color: hsl(0, 0%, 10%);
+        outline: 0;
+        border: 1px solid #e5e1e1;
+      }
+      .formGroup input[type="text"] {
+        height: 40px;
+        padding: 0 0.5em;
+        font-weight: 1.5rem;
+        font-weight: 400;
+        color: hsl(0, 0%, 10%);
+        outline: 0;
+        border: 1px solid #e5e1e1;
+      }
+      .formGroup input[type="reset"] {
+        height: 40px;
+        padding: 0 0.5em;
+        font-weight: 1.5rem;
+        font-weight: 400;
+        color: hsl(0, 0%, 10%);
+        outline: 0;
+        border: 1px solid #e5e1e1;
+      }
+
+      .formGroup input::placeholder  {
+        color: #b3b3b3;
+      }
+
+      .formGroup div {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        margin: 1em 0;
+      }
+      .formGroup div span select{
+        color: hsl(203, 6%, 41%);
+        cursor: pointer;
+        user-select: none;
+      }
+
+      input,
+      label,
+      small,
+      button {
+        display: block;
+      }
+      input[type="text"] {
+        height: 1rem;
+        width: 10rem;
+        margin: 2px;
+        padding: 2px;
+        border-radius: 10px;
+      }
+      input[type="number"] {
+        height: 1rem;
+        width: 10rem;
+        margin: 2px;
+        padding: 2px;
+        border-radius: 10px;
+      }
+      input[type="submit"] {
+        width: 100%;
+        padding: 0.75em 1em;
+        margin: 0.9em 0 0 0;
+        border: 0;
+        outline: 0;
+        letter-spacing: 1px;
+        border-radius: 30px;
+        background: linear-gradient(
+          90deg,
+          hsla(328, 75%, 45%, 1) 0%,
+          hsla(269, 85%, 41%, 1) 100%
+        );
+        color: hsl(0, 0%, 100%);
+        cursor: pointer;
+      }
+      
+      input[type="reset"] {
+        width: 100%;
+        padding: 0.75em 1em;
+        margin: 0.1em 0 0 0;
+        border: 0;
+        outline: 0;
+        letter-spacing: 1px;
+        border-radius: 30px;
+        background: linear-gradient(
+          90deg,
+          hsla(328, 75%, 45%, 1) 0%,
+          hsla(269, 85%, 41%, 1) 100%
+        );
+        color: hsl(0, 0%, 100%);
+        cursor: pointer;
+      }
+      #addStudents {
+        border: 1px solid hsla(269, 85%, 41%, 1) 100%;
+      }
+      #output {
+        width: 104%;
+        background-color: white;
+        margin-top: 2rem;
+        padding: 1rem;
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);;
+      }
+      #output form{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        
+    }
+      #output p{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+      #output span{
+        background-color:lavender;
+        box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.4);
+        height: 5px;
+        padding: 2px;
+        border-radius: 5%;
+      }
+      .sel{
+        font-size: 20px;
+      }
+    </style>
   </head>
   <body>
-    <div id="addStudents">
-      <form id="studentForm">
+    <div id="addStudents" class="contentWrapper">
+        <h2>Student Reports</h2>
+      <form id="studentForm" class="formGroup">
         <div id="std">
           <div id="ndiv">
             <label for="name">Name :</label>
@@ -27,42 +208,44 @@
               name="rollNumber"
               id="rollNo"
               placeholder="Enter Student Roll No."
+              style="width: 10rem;"
             />
           </div>
+          <label for="sem">Select Semester</label
+            ><select name="sem" id="sem" class="sel">
+              <option value="1">Semester 1</option>
+              <option value="2">Semester 2</option>
+            </select>
         </div>
         <div id="marks">
-          <label for="sem">Select Semester</label
-          ><select name="sem" id="sem">
-            <option value="1">Semester 1</option>
-            <option value="2">Semester 2</option>
-          </select>
-          <div>
-            <div id="eng">
-              <label for="engM">English</label>
-              <input
-                type="number"
-                name="engM"
-                id="engM"
-                placeholder="English"
-              />
-            </div>
-            <div id="maths">
-              <label for="mathsM">Mathematics</label>
-              <input
-                type="number"
-                name="mathsM"
-                id="mathsM"
-                placeholder="Mathematics"
-              />
-            </div>
-            <div id="sci">
-              <label for="sciM">Science</label>
-              <input
-                type="number"
-                name="sciM"
-                id="sciM"
-                placeholder="Science"
-              />
+            <div>
+                <div id="eng">
+                    <label for="engM">English</label>
+                    <input
+                    type="number"
+                    name="engM"
+                    id="engM"
+                    placeholder="English"
+                    />
+                </div>
+                <div id="maths">
+                    <label for="mathsM">Mathematics</label>
+                    <input
+                    type="number"
+                    name="mathsM"
+                    id="mathsM"
+                    placeholder="Mathematics"
+                    />
+                </div>
+                <div id="sci">
+                    <label for="sciM">Science</label>
+                    <input
+                    type="number"
+                    name="sciM"
+                    id="sciM"
+                    placeholder="Science"
+                    />
+                    
             </div>
           </div>
         </div>
@@ -71,10 +254,10 @@
         <input type="reset" value="Reset" />
       </form>
     </div>
-    <div id="output">
+    <div id="output" class="contentWrapper">
       <form action="#">
-        <label for="semOut"></label>
-        <select name="semOut" id="semOut">
+        <label for="semOut">Select Semester</label>
+        <select name="semOut" id="semOut" class="sel">
           <option value="1">Semester 1</option>
           <option value="2">Semester 2</option>
         </select>
@@ -84,7 +267,7 @@
       </p>
       <form action="#">
         <label for="sub">Select Subject</label>
-        <select name="sub" id="subAvgDrop">
+        <select name="sub" id="subAvgDrop" class="sel">
           <option value="English">English</option>
           <option value="Mathematics">Mathematics</option>
           <option value="Science">Science</option>
