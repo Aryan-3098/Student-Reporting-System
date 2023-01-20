@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Students Reporting System</title>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'></link>  
     <style>
       * {
         margin: 0px;
@@ -251,7 +252,7 @@
         </div>
         <input type="submit" value="Submit" id="submitButtn" />
         <br />
-        <input type="reset" value="Reset" />
+        <input type="reset" value="Reset" id="reset" />
       </form>
     </div>
     <div id="output" class="contentWrapper">
@@ -282,6 +283,7 @@
     integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
     crossorigin="anonymous"
   ></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>  
   <script>
     $(document).ready(function () {
       updatePercentage(1);
@@ -291,6 +293,7 @@
 
     $("#submitButtn").on("click", function (e) {
       submitForm(e);
+     
     });
 
     function submitForm(e) {
@@ -306,7 +309,19 @@
         type: "POST",
         url: "/addStudent",
         data: JSON.stringify(formData),
-        success: function () {},
+        success: function () {
+            swal({  
+                title: "Success!",  
+                text: "data added succesully!",  
+                icon: "success",  
+                button: "next!",  
+              });  
+            
+            updatePercentage(1);
+            updateSubjectAverage("english");
+            updateTopScorer();
+            $("#reset").trigger('click');
+        },
         dataType: "json",
         contentType: "application/json",
       });
